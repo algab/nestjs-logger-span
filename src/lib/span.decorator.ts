@@ -5,7 +5,7 @@ import { storage } from './async.local.storage';
 export const Span = (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
   const original = descriptor.value;
   descriptor.value = function (...args: any[]) {
-    return storage.run(randomUUID(), () => original.call(this, ...args));
+    return storage.run(randomUUID(), () => original.apply(this, args));
   };
   copyMetadata(original, descriptor.value);
   return descriptor;

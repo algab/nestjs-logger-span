@@ -2,10 +2,11 @@ import { Inject, Injectable, LoggerService } from '@nestjs/common';
 import { Logger } from 'winston';
 
 import { storage } from './async.local.storage';
+import { CONFIG_WINSTON } from './logger.constant';
 
 @Injectable()
-export class LoggerCustom implements LoggerService {
-  constructor(@Inject('TOKEN') private readonly logger: Logger) {}
+export class LoggerServiceCustom implements LoggerService {
+  constructor(@Inject(CONFIG_WINSTON) private readonly logger: Logger) {}
 
   log(message: any, ...optionalParams: any[]) {
     this.logger.info(message, this.setMetadata(optionalParams));

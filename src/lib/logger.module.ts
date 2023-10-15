@@ -1,7 +1,8 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { Logger } from 'winston';
 
-import { LoggerCustom } from './logger.service';
+import { CONFIG_WINSTON } from './logger.constant';
+import { LoggerServiceCustom } from './logger.service';
 
 @Module({})
 export class LoggerModule {
@@ -10,12 +11,12 @@ export class LoggerModule {
       module: LoggerModule,
       providers: [
         {
-          provide: 'TOKEN',
+          provide: CONFIG_WINSTON,
           useValue: logger,
         },
-        LoggerCustom,
+        LoggerServiceCustom,
       ],
-      exports: [LoggerCustom],
+      exports: [LoggerServiceCustom],
     };
   }
 }
