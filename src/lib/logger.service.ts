@@ -24,10 +24,6 @@ export class LoggerServiceCustom implements LoggerService {
     this.logger.debug(message, this.setMetadata(optionalParams));
   }
 
-  verbose?(message: any, ...optionalParams: any[]) {
-    this.logger.verbose(message, this.setMetadata(optionalParams));
-  }
-
   private setMetadata(optionalParams: any[]) {
     const metadata = {};
     const spanId = storage.getStore();
