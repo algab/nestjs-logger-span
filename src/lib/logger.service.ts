@@ -1,4 +1,5 @@
 import { Inject, Injectable, LoggerService } from '@nestjs/common';
+import { readFileSync } from 'fs';
 import { Logger } from 'winston';
 
 import { storage } from './async.local.storage';
@@ -6,7 +7,12 @@ import { CONFIG_WINSTON } from './logger.constant';
 
 @Injectable()
 export class LoggerServiceCustom implements LoggerService {
-  constructor(@Inject(CONFIG_WINSTON) private readonly logger: Logger) {}
+  private applicationName: string;
+
+  constructor(@Inject(CONFIG_WINSTON) private readonly logger: Logger) {
+    const packageJSON = readFileSync('package.json').toString();
+    this.applicationName = JSON.parse(packageJSON).name;
+  }
 
   log(message: any, ...optionalParams: any[]) {
     this.logger.info(message, this.setMetadata(optionalParams));
@@ -27,6 +33,8 @@ export class LoggerServiceCustom implements LoggerService {
   private setMetadata(optionalParams: any[]) {
     const metadata = {};
     const spanId = storage.getStore();
+
+    metadata['application'] = this.applicationName;
 
     if (optionalParams.length === 2) {
       metadata['stack'] = optionalParams[0];
