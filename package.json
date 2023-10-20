@@ -1,6 +1,6 @@
 {
   "name": "nestjs-logger-span",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "NestJS Logger Span",
   "author": "Álvaro Oliveira",
   "main": "dist/index.js",

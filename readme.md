@@ -1,5 +1,9 @@
 # NestJS Logger Span
 
+[![NestJS Logger Span](https://github.com/algab/nestjs-logger-span/actions/workflows/master.yml/badge.svg)](https://github.com/algab/nestjs-logger-span/actions)
+[![codecov](https://codecov.io/gh/algab/nestjs-logger-span/graph/badge.svg?token=LWNBQGUE4Z)](https://codecov.io/gh/algab/nestjs-logger-span)
+[![npm package](https://img.shields.io/npm/v/nestjs-logger-span?style=flat)](https://www.npmjs.com/package/nestjs-logger-span/v/latest)
+
 A winston based logger library that adds the spanId field throughout the application flow.
 
 ## Install
